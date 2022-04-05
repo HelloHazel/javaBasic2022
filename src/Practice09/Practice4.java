@@ -11,7 +11,13 @@ public class Practice4 {
         };
         // 뮤직 스타트!
         for(int i = 0; i < band.length; i++){
-            
+            if(band[i] instanceof Singable){
+                ((Singable) band[i]).sing();
+            }
+            if(band[i] instanceof Playable){
+                ((Playable) band[i]).play();
+            }
+
         }
     }
 }
@@ -37,7 +43,7 @@ interface Playable {
     void play();
 }
 // 여기에 보컬리스트 클래스를 만듭니다.
-class Vocalist extends Musician{
+class Vocalist extends Musician implements Singable{
     public Vocalist(String name) {
         super(name);
     }
@@ -46,12 +52,13 @@ class Vocalist extends Musician{
     }
 }
 // 여기에 기타리스트 클래스를 만드십시오.
-class Guitarist extends Musician{
+class Guitarist extends Musician implements Playable{
     //guitarType 인스턴스 필드 구현
     private String guitarType;
     //생성자 생성
     public Guitarist(String name, String guitarType){
-        super(guitarType);
+        super(name);
+        this.guitarType = guitarType;
     }
     public void play(){
         System.out.println(getName() + "는 " + guitarType + "을 연주했습니다.");
@@ -59,7 +66,7 @@ class Guitarist extends Musician{
 }
 // 여기에 코러스 & 드러머 클래스를 만듭니다
 
-class ChorusDrummer extends Musician{
+class ChorusDrummer extends Musician implements Singable, Playable{
     //생성자 정의
     public ChorusDrummer(String name){
         super(name);
