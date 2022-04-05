@@ -19,9 +19,10 @@ public class Practice3 {
         for(int i = 0; i < athlete.length; i++){
             if(athlete[i] instanceof Swimmer) {
                 ((Swimmer) athlete[i]).swim();
-            }
-
-
+            }else if (athlete[i] instanceof MarathonRunner){
+                ((MarathonRunner) athlete[i]).run();
+            }else{
+                System.out.println("unknown");
             }
         }
     }
